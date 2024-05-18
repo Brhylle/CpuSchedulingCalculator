@@ -22,6 +22,7 @@
             font-size: 20px;
             color: #444;
             margin-top: 20px;
+            font-weight: bold;
         }
         table {
             width: 100%;
@@ -57,9 +58,9 @@
         .gantt-container .bar {
             background-color: #4CAF50;
             position: relative;
-            bottom: 0;
+            /* bottom: 0;
             left: 0;
-            right: 0;
+            right: 0; */
             padding: 15px;
         }
 
@@ -80,12 +81,13 @@
             flex-direction: row;
             justify-content: center;
             align-content: center;
+            position: relative;
         }
         
         div.start-process-el, div.end-process-el {
             display: flex;
-            margin-left: 0.82rem;
-            margin-right: 0.82rem;
+            position: relative;
+
         }
     </style>
 </head>
@@ -98,8 +100,8 @@
     <div class="gantt-container">
         @php $index = 1; @endphp
         @foreach ($result['gantt_chart'] as $entry)
-            <div style="width: {{ ($entry['end_time'] - $entry['start_time']) * 20 }}px;">
-                <div class="bar" style="width: 50%;">
+            <div >
+                <div class="bar">
                     <span>{{ $entry['process_name'] }}</span>
                 </div>
             </div>
@@ -113,24 +115,35 @@
             $index = 1;
             $shownTimes = [];
         @endphp
+
         @foreach ($result['gantt_chart'] as $entry)
             @php
                 // initialization of variables for use later...
-                $startTime = $entry['start_time'];
-                $endTime = $entry['end_time'];
+                    $startTime = $entry['start_time'];
+                    $endTime = $entry['end_time'];
+                    $startTimeLength = strlen($startTime);
+                    $endTimeLength = strlen($endTime);
+                    $baseMargin = 1.00; // base margin
+                    $adjustmentFactor = 0.25; // adjustment factor for each digit increase and so the decrease of margin (both left and right)
+                    
+                    $startTimeMargin = $baseMargin - (($startTimeLength - 1) * $adjustmentFactor);
+                    $endTimeMargin = $baseMargin - (($endTimeLength - 1) * $adjustmentFactor);
             @endphp
+
             @if (!in_array($startTime, $shownTimes))
-                <div class="start-process-el">
+                <div class="start-process-el" style="margin-left: {{ $startTimeMargin }}rem; margin-right: {{ $startTimeMargin }}rem;">
                     {{$startTime}}
                 </div>
                 @php $shownTimes[] = $startTime; @endphp
             @endif
+
             @if ($startTime != $endTime && !in_array($endTime, $shownTimes))
-                <div class="end-process-el">
+                <div class="end-process-el" style="margin-left: {{ $endTimeMargin }}rem; margin-right: {{ $endTimeMargin }}rem;">
                     {{$endTime}}
                 </div>
                 @php $shownTimes[] = $endTime; @endphp
             @endif
+
         @endforeach
         @php $index++ @endphp
     </div>

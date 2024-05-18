@@ -5,8 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-    
+    <title>CPU Scheduling Calculator</title>
+    @vite('resources/css/app.css')
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -38,55 +38,104 @@
         tbody tr:nth-child(even) {
             background-color: #f2f2f2;
         }
-        .gantt {
+        .gantt-container {
             display: flex;
             align-items: center;
             margin-top: 20px;
+            justify-content: center;
+            align-items: center;
         }
-        .gantt div {
-            flex: 1;
-            padding: 5px;
+        .gantt-container div {
+            flex: 0;
+            padding: 4px;
             text-align: center;
             background-color: #f0f0f0;
             border: 1px solid #ccc;
             position: relative;
         }
-        .gantt .bar {
+
+        .gantt-container .bar {
             background-color: #4CAF50;
-            height: 20px;
             position: relative;
             bottom: 0;
             left: 0;
             right: 0;
+            padding: 15px;
         }
-        .gantt .bar span {
-            color: white;
+
+        /* THIS STYLING TARGETS THE FONT INSIDE THE GANTT CHART */
+        .gantt-container .bar span {
+            color: #0E3D21;
             font-size: 12px;
+            font-weight: bold;
             position: absolute;
-            top: 2px;
+            padding: 5px;
+            top: 0px;
             left: 50%;
             transform: translateX(-50%);
+        }
+
+        .gantt-process-times {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-content: center;
+        }
+        
+        div.start-process-el, div.end-process-el {
+            display: flex;
+            margin-left: 0.82rem;
+            margin-right: 0.82rem;
         }
     </style>
 </head>
 <body>
-    <h1>CPU Scheduler Results</h1>
+    <h1 class="font-bold">CPU Scheduler Results</h1>
 
-    <h2>Gantt Chart</h2>
-<div class="gantt">
-    @php $index = 1; @endphp
-    @foreach ($result['gantt_chart'] as $entry)
-        <div style="width: {{ ($entry['end_time'] - $entry['start_time']) * 20 }}px;">
-            <div class="bar" style="width: 100%;">
-                <span>{{ $entry['process_name'] }}</span>
+    {{-- GANTT CHART --}}
+    <h2 class="text-center">Gantt Chart</h2>
+
+    <div class="gantt-container">
+        @php $index = 1; @endphp
+        @foreach ($result['gantt_chart'] as $entry)
+            <div style="width: {{ ($entry['end_time'] - $entry['start_time']) * 20 }}px;">
+                <div class="bar" style="width: 50%;">
+                    <span>{{ $entry['process_name'] }}</span>
+                </div>
             </div>
-            <span>{{ $entry['start_time'] }}</span>
-            {{-- <span>{{ $index }}</span> --}}
-        </div>
         @php $index++; @endphp
-    @endforeach
-</div>
+        @endforeach
+    </div>
 
+    {{-- START AND END TIME OF EACH PROCESSES --}}
+    <div class="gantt-process-times">
+        @php
+            $index = 1;
+            $shownTimes = [];
+        @endphp
+        @foreach ($result['gantt_chart'] as $entry)
+            @php
+                // initialization of variables for use later...
+                $startTime = $entry['start_time'];
+                $endTime = $entry['end_time'];
+            @endphp
+            @if (!in_array($startTime, $shownTimes))
+                <div class="start-process-el">
+                    {{$startTime}}
+                </div>
+                @php $shownTimes[] = $startTime; @endphp
+            @endif
+            @if ($startTime != $endTime && !in_array($endTime, $shownTimes))
+                <div class="end-process-el">
+                    {{$endTime}}
+                </div>
+                @php $shownTimes[] = $endTime; @endphp
+            @endif
+        @endforeach
+        @php $index++ @endphp
+    </div>
+
+    {{-- PROCESS DETAILS TABLE--}}
     <h2>Process Details</h2>
     <table>
         <thead>
@@ -113,6 +162,7 @@
         </tbody>
     </table>
 
+    {{-- AVERAGE WEIGHTED TIME TABLE --}}
     <h2>Average Times</h2>
     <table>
         <thead>

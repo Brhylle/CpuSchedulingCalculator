@@ -94,13 +94,16 @@
 <body>
     <h1 class="font-bold">CPU Scheduler Results</h1>
 
-    {{-- GANTT CHART --}}
+    {{-- DISPLAY THE GANTT CHART ELEMENTS --}}
     <h2 class="text-center">Gantt Chart</h2>
 
+    {{-- GLUES AND HOLDS ALL OF THE ELEMENTS OF THE GANTT TOGETHER --}}
     <div class="gantt-container">
         @php $index = 1; @endphp
+        {{-- ITERATES THE ARRAY UNTIL EXHAUSTED --}}
         @foreach ($result['gantt_chart'] as $entry)
             <div >
+                {{-- THE GREEN BOX INSIDE THE BOX LOL --}}
                 <div class="bar">
                     <span>{{ $entry['process_name'] }}</span>
                 </div>
@@ -109,7 +112,7 @@
         @endforeach
     </div>
 
-    {{-- START AND END TIME OF EACH PROCESSES --}}
+    {{-- DISPLAY THE START AND END TIME OF EACH PROCESSES AT THE START/END OF EACH BOXES--}}
     <div class="gantt-process-times">
         @php
             $index = 1;
@@ -121,7 +124,7 @@
                 // initialization of variables for use later...
                     $startTime = $entry['start_time'];
                     $endTime = $entry['end_time'];
-                    $startTimeLength = strlen($startTime);
+                    $startTimeLength = strlen($startTime);  
                     $endTimeLength = strlen($endTime);
                     $baseMargin = 1.00; // base margin
                     $adjustmentFactor = 0.25; // adjustment factor for each digit increase and so the decrease of margin (both left and right)
@@ -153,6 +156,7 @@
     <table>
         <thead>
             <tr>
+                {{-- HEADERS FOR THE TABLE ITSELF --}}
                 <th>Process Name</th>
                 <th>Arrival Time</th>
                 <th>Burst Time</th>
@@ -162,6 +166,7 @@
             </tr>
         </thead>
         <tbody>
+            {{-- ITERATES THROUGHOUT ALL THE FILLED UP PROCESSES THROUGH AN ARRAY --}}
             @foreach ($result['processes'] as $process)
                 <tr>
                     <td>{{ $process['name'] }}</td>
@@ -175,8 +180,9 @@
         </tbody>
     </table>
 
-    {{-- AVERAGE WEIGHTED TIME TABLE --}}
     <h2>Average Times</h2>
+
+    {{-- TABLE DEFINITION FOR THE AVERAGES --}}
     <table>
         <thead>
             <tr>

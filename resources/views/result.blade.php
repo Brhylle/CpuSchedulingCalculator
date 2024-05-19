@@ -58,9 +58,6 @@
         .gantt-container .bar {
             background-color: #4CAF50;
             position: relative;
-            /* bottom: 0;
-            left: 0;
-            right: 0; */
             padding: 15px;
         }
 

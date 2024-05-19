@@ -26,6 +26,7 @@ class ProcessController extends Controller
         $processes = collect($validatedData['processes']);
         $algorithm = $validatedData['algorithm'];
 
+        // THIS IS THE SWITCHING GATES OF ALGORITHMS
         switch ($algorithm) {
             case 'fcfs':
                 $result = $this->fcfs($processes);
@@ -43,6 +44,7 @@ class ProcessController extends Controller
         return view('result', compact('result'));
     }
 
+    // FIRST-COME FIRST-SERVE
     private function fcfs($processes)
     {
         // First Come First Serve (FCFS) Scheduling Algorithm
@@ -86,6 +88,7 @@ class ProcessController extends Controller
         ];
     }
 
+    // SHORTEST-JOB FIRST
     private function sjf($processes)
     {
         // Shortest Job First (SJF) Scheduling Algorithm
@@ -142,6 +145,7 @@ class ProcessController extends Controller
         ];
     }
 
+    // PRIORITY SCHEDULING ALGORITHM
     private function priority($processes)
     {
         // Priority Scheduling Algorithm

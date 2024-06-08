@@ -67,14 +67,14 @@
         }
 
         .gantt-container .bar {
-            background-color: rgb(var(--primary-700));
+            background-color: rgb(var(--primary-500));
             position: relative;
             padding: 35px;
         }
 
         /* THIS STYLING TARGETS THE FONT INSIDE THE GANTT CHART */
         .gantt-container .bar span {
-            color: rgb(var(--text-50));
+            color: rgb(var(--text-100));
             font-size: 32px;
             font-weight: bold;
             position: absolute;

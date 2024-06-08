@@ -167,6 +167,7 @@ export default {
           textAlign: 'center',
           background: 'rgb(var(--accent-300))',
           color: 'rgb(var(--text-600))',
+          fontWeight: '700',
         },
 
         '.utils-form-wrapper': {
@@ -207,6 +208,9 @@ export default {
           fontSize: '4rem',
           border: '12px solid var(--accent-700)',
         },
+        '.utils-option': {
+          fontFamily: 'PP Neue Montreal Medium',
+        }
 
 
       }

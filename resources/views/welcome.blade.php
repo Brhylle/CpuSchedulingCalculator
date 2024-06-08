@@ -64,9 +64,9 @@
             <div class="utils-algorithm-select">
                 <label for="algorithm" class="utils-subtitle">Select Scheduling Algorithm:</label>
                 <select class="utils-important" name="algorithm" id="algorithm" required>
-                    <option value="fcfs">First Come First Serve (FCFS)</option>
-                    <option value="sjf">Shortest Job First (SJF)</option>
-                    <option value="priority">Priority Scheduling (Preemptive)</option>
+                    <option class="utils-option" value="fcfs">First Come First Serve (FCFS)</option>
+                    <option class="utils-option" value="sjf">Shortest Job First (SJF)</option>
+                    <option class="utils-option" value="priority">Priority Scheduling (Preemptive)</option>
                 </select>
             </div>
 

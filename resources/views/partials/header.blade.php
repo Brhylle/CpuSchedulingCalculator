@@ -14,11 +14,11 @@
         }
         h1 {
             font-size: 24px;
-            color: #333;
+        
         }
         h2 {
             font-size: 20px;
-            color: #444;
+            
             margin-top: 20px;
         }
         table {

@@ -137,6 +137,7 @@ export default {
           boxShadow: '0 0 0.625rem rgba(0, 0, 0, 0.1)',
           maxWidth: '37.5rem',
           margin: '4rem auto',
+          // ***
         },
         '.utils-algorithm-select': {
           display: 'flex',
@@ -151,10 +152,54 @@ export default {
           fontSize: '6.5rem',
         },
 
-        '.utils-field-hide': {
-          display: 'none',
+        '.utils-subtitle': {
+          textTransform: 'capitalize',
+          fontWeight: '700',
         },
-       }
+
+        '.utils-important': {
+          padding: '0.325rem',
+          borderRadius: '1.1rem',
+          margin: '0.300rem',
+          fontSize: '1rem',
+          fontFamily: 'PP Neue Montreal Medium',
+          fontStyle: 'italic',
+          textAlign: 'center',
+          background: 'rgb(var(--accent-300))',
+          color: 'rgb(var(--text-600))',
+        },
+
+        '.utils-form-wrapper': {
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        },
+
+        '.utils-process-form': {
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          marginBottom: '10px',
+          border: '1px solid var(--accent-200)',
+          padding: '10px',
+          borderRadius: '5px',
+          background: 'rgb(var(--background-50))',
+        },
+        '.util-priority-input': {
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          marginBottom: '7.5px',
+          border: '1px solid var(--accent-200)',
+          padding: '10px',
+          borderRadius: '5px',
+          background: 'rgb(var(--background-50))',
+        }
+
+
+      }
       addUtilities(newUtilities, ['responsive', 'hover']);
     }
   ],

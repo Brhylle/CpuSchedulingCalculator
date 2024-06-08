@@ -7,37 +7,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CPU Scheduling Calculator</title>
     @vite('resources/css/app.css')
-    <style>
+<style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: PP Neue Montreal Medium;
             line-height: 1.6;
             margin: 20px;
-            background-color: #C0BADE; /* BACKGROUND color */
+            background-color: rgb(var(--background-200)); /* BACKGROUND color */
+            color: rgb(var(--text-950));
         }
         h1 {
-            font-size: 24px;
-            color: #333;
+            font-family: Humane Bold;
+            font-size: 14rem;
+            color: rgb(var(--text-600));
+            text-align: center;
         }
         h2 {
-            font-size: 20px;
-            color: #444;
+            font-size: 64px;
+            color: rgb(var(--text-800));
             margin-top: 20px;
             font-weight: bold;
+            font-family: PP Neue Montreal Bold;
+        }
+
+        th {
+            background-color: rgb(var(--background-300))
         }
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 10px;
-            background-color: #fff;
-            border: 1px solid #ccc;
+            background-color: rgb(var(--background-100));
+            border: 1px solid rgb(var(--accent-300));
+            font-size: 28px; /* Decreased font size */
         }
-        th, td {
-            border: 1px solid #ccc;
-            padding: 8px;
+
+        th,
+        td {
+            border: 1px solid rgb(var(--accent-800));
+            padding: 6px; /* Decreased padding */
             text-align: left;
         }
         tbody tr:nth-child(even) {
-            background-color: #f2f2f2;
+            background-color: rgb(var(--background-50));
         }
         .gantt-container {
             display: flex;
@@ -50,21 +61,21 @@
             flex: 0;
             padding: 4px;
             text-align: center;
-            background-color: #f0f0f0;
-            border: 1px solid #ccc;
+            background-color: rgb(var(--secondary-950));
+            border: 1px solid rgb(var(--accent-50));
             position: relative;
         }
 
         .gantt-container .bar {
-            background-color: #4CAF50;
+            background-color: rgb(var(--primary-700));
             position: relative;
-            padding: 15px;
+            padding: 35px;
         }
 
         /* THIS STYLING TARGETS THE FONT INSIDE THE GANTT CHART */
         .gantt-container .bar span {
-            color: #0E3D21;
-            font-size: 12px;
+            color: rgb(var(--text-50));
+            font-size: 32px;
             font-weight: bold;
             position: absolute;
             padding: 5px;
@@ -79,6 +90,7 @@
             justify-content: center;
             align-content: center;
             position: relative;
+            font-size: 40px;
         }
         
         div.start-process-el, div.end-process-el {
@@ -89,25 +101,59 @@
     </style>
 </head>
 <body>
-    <h1 class="font-bold">CPU Scheduler Results</h1>
+    <h1 class="font-bold m-0">CPU Scheduler Results</h1>
 
     {{-- DISPLAY THE GANTT CHART ELEMENTS --}}
     <h2 class="text-center">Gantt Chart</h2>
 
     {{-- GLUES AND HOLDS ALL OF THE ELEMENTS OF THE GANTT TOGETHER --}}
+    {{-- GLUES AND HOLDS ALL OF THE ELEMENTS OF THE GANTT TOGETHER --}}
+
     <div class="gantt-container">
-        @php $index = 1; @endphp
-        {{-- ITERATES THE ARRAY UNTIL EXHAUSTED --}}
-        @foreach ($result['gantt_chart'] as $entry)
-            <div >
-                {{-- THE GREEN BOX INSIDE THE BOX LOL --}}
-                <div class="bar">
-                    <span>{{ $entry['process_name'] }}</span>
-                </div>
-            </div>
-        @php $index++; @endphp
-        @endforeach
-    </div>
+    @php
+        $prevEndTime = 0;
+        $totalDuration = 0;
+    @endphp
+
+    {{-- Iterate through each process and handle idle time --}}
+    @foreach ($result['gantt_chart'] as $entry)
+        @php
+            $entryStartTime = $entry['start_time'];
+            $entryEndTime = $entry['end_time'];
+            $processDuration = $entryEndTime - $entryStartTime;
+        @endphp
+
+        {{-- Add idle segment if there's a gap --}}
+        @if ($entryStartTime > $prevEndTime)
+            @php
+                // Calculate idle duration
+                $idleDuration = $entryStartTime - $prevEndTime;
+                $totalDuration += $idleDuration;
+                
+                // Render idle time entry only if the previous end time is not zero
+                if ($prevEndTime != 0) {
+            @endphp
+                    {{-- Render idle time entry --}}
+                    <div class="bar idle" style="width: {{ $idleDuration }}%;">
+                        <span>idle</span>
+                    </div>
+            @php
+                }
+            @endphp
+        @endif
+
+        {{-- Render current process --}}
+        <div class="bar" style="width: {{ $processDuration }}%;">
+            <span>{{ $entry['process_name'] }}</span>
+        </div>
+
+        {{-- Update previous end time --}}
+        @php
+            $prevEndTime = $entryEndTime;
+            $totalDuration += $processDuration;
+        @endphp
+    @endforeach
+</div>
 
     {{-- DISPLAY THE START AND END TIME OF EACH PROCESSES AT THE START/END OF EACH BOXES--}}
     <div class="gantt-process-times">
@@ -123,11 +169,11 @@
                     $endTime = $entry['end_time'];
                     $startTimeLength = strlen($startTime);  
                     $endTimeLength = strlen($endTime);
-                    $baseMargin = 1.00; // base margin
-                    $adjustmentFactor = 0.25; // adjustment factor for each digit increase and so the decrease of margin (both left and right)
+                    $baseMargin = 1.5; // base margin
+                    $gapThreshold = 0.65; // adjustment factor for each digit increase and so the decrease of margin (both left and right)
                     
-                    $startTimeMargin = $baseMargin - (($startTimeLength - 1) * $adjustmentFactor);
-                    $endTimeMargin = $baseMargin - (($endTimeLength - 1) * $adjustmentFactor);
+                    $startTimeMargin = $baseMargin - (($startTimeLength - 1) * $gapThreshold);
+                    $endTimeMargin = $baseMargin - (($endTimeLength - 1) * $gapThreshold);
             @endphp
 
             @if (!in_array($startTime, $shownTimes))

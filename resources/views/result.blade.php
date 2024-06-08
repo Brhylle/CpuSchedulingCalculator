@@ -240,5 +240,12 @@
             </tr>
         </tbody>
     </table>
+
+    <div class="button-wrapper padding-12">
+        <button id="calculate-again-btn 
+        " class="rounded-xl padding-12 bg-accent-700"><a href="{{ route('welcome') }}" class="padding-12 text-text-100">Calculate Again</a>
+        </button>
+    </div>
+
 </body>
 </html>

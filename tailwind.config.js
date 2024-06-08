@@ -196,7 +196,17 @@ export default {
           padding: '10px',
           borderRadius: '5px',
           background: 'rgb(var(--background-50))',
-        }
+        },
+        '.button-wrapper': {
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          margin: '2rem',
+          textTransform: 'uppercase',
+          fontFamily: 'PP Neue Montreal Bold',
+          fontSize: '4rem',
+          border: '12px solid var(--accent-700)',
+        },
 
 
       }

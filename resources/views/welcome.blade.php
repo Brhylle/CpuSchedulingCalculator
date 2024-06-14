@@ -25,14 +25,14 @@
             border-radius: 7.5px;
             cursor: pointer;
             
-        }
-
+            }
+            
         button:hover {
             background-color: rgb(var(--primary-800));
             text-transform: uppercase;
-        }
+            }
 
-        .buttons-container {
+            .buttons-container {
             display: flex;
             flex-direction: row;
         }
@@ -58,9 +58,15 @@
 <body>
     <div class="utils-form-wrapper">
         <form class="utils-form" action="{{ route('calculate') }}" method="POST" onsubmit="if(!validateAndCompute()) return false;">
+            
+            <div class="tech-stack flex justify-center items-center bg-background-400 w-full p-8 gap-8 rounded-lg">
+                <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" alt="" style="max-width: 150px; height: auto;">
+                <img src="{{@asset('assets/imgs/JavaScript-logo.png')}}" alt="" style="max-width: 75px; height: auto;">
+                <img src="{{@asset('assets/imgs/PHP-logo.svg.png')}}" alt="" style="max-width: 100px; height: auto;">
+            </div>
             @csrf
             <h2 class="utils-title">CPU Scheduling Calculator</h2>
-
+            
             <div class="utils-algorithm-select">
                 <label for="algorithm" class="utils-subtitle">Select Scheduling Algorithm:</label>
                 <select class="utils-important" name="algorithm" id="algorithm" required>
@@ -99,12 +105,6 @@
         </form>
 
         </div>
-
-<div class="tech-stack flex justify-center items-center bg-background-400 w-full p-8 gap-8">
-    <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" alt="" style="max-width: 150px; height: auto;">
-    <img src="{{@asset('assets/imgs/JavaScript-logo.png')}}" alt="" style="max-width: 75px; height: auto;">
-    <img src="{{@asset('assets/imgs/PHP-logo.svg.png')}}" alt="" style="max-width: 100px; height: auto;">
-</div>
 
 
 

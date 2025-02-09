@@ -12,8 +12,7 @@
             font-family: PP Neue Montreal Medium;
             line-height: 1.6;
             margin: 20px;
-            background-color: rgb(var(--background-200)); /* BACKGROUND color */
-            color: rgb(var(--text-950));
+            background-color: #C0BADE;
         }
         h1 {
             font-family: Humane Bold;

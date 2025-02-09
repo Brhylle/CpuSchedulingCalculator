@@ -19,16 +19,16 @@
             display: block;
             margin: 5px 0px 5px 0px;
             padding: 10px;
-            background-color: rgb(var(--primary-700));
             color: white;
             border: none;
             border-radius: 7.5px;
             cursor: pointer;
+            background-color: #6D41A1;
             
         }
 
         button:hover {
-            background-color: rgb(var(--primary-800));
+            background-color: #290e49;
             text-transform: uppercase;
         }
 
@@ -52,17 +52,129 @@
             max-height: 35vh; /* Set maximum height */
             overflow-y: auto; /* Enable vertical scrolling */
         }
+
+        .utils-form-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .utils-form {
+            font-family: "PP Neue Montreal Medium";
+            background-color: #462A68; /* BACKGROUND color */
+            padding: 1.25rem;
+            border-radius: 0.313rem; 
+           box-shadow: 0 0 0.625rem rgba(0,0,0,0.1);
+           max-width: 37.5rem; /* 600px */
+           margin: 4rem;
+        }
+
+        .main-theme {
+            font-family: 'PP Neue Montreal Medium';
+            width: 100vw;
+            height: 100vh;
+            color: #e9e3f1;
+            background-color: #C0BADE;
+            line-height: 1.6;
+        }   
+
+
+        .utils-title {
+            text-align: center;
+            font-size: 3.5rem;
+            font-family: 'Humane Bold';
+            line-height: 75%;
+
+            margin-bottom: 1.25rem;
+        }
+
+        .utils-subtitle {
+                        text-transform: capitalize;
+           font-weight: 700; 
+        }
+
+        .utils-important {
+
+        padding: 0.325rem;
+    border-radius: 1.1rem;
+    margin: 0.300rem;
+    font-size: 1rem;
+    font-family: 'PP Neue Montreal Medium';
+    font-style: italic;
+    text-align: center;
+    background: #5914ad;
+    color: #e9e3f1;
+    font-weight: 700;
+    }
+
+    .utils-form-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .utils-process-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        background: #ddc4fd;
+        color: #290e49;
+        padding: 10px;
+        margin: 10px;
+        box-shadow: 0 0 0.625rem rgba(0,0,0,0.1);
+    }
+
+    .button-wrapper {
+        display: flex;
+        justify-content: center;
+        margin: 2rem;
+        align-items: center;
+        text-transform: uppercase;
+        font-family: 'PP Neue Montreal Bold';
+        font-size: 4rem;
+        border: 12px solid #220149;
+        border-radius: 10px;
+    }
+
+    .utils-option {
+        padding: 0.325rem;
+        border-radius: 1.1rem;
+        margin: 0.300rem;
+        font-size: 1rem;
+        font-family: 'PP Neue Montreal Medium';
+        font-style: italic;
+        text-align: center;
+        background: #5914ad;
+        color: #e9e3f1;
+        font-weight: 700;
+    }
+
+    .utils-algorithm-select {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        background: #ddc4fd;
+        color: #290e49;
+        padding: 10px;
+        margin: 10px;
+        box-shadow: 0 0 0.625rem rgba(0,0,0,0.1);
+    }
+
+    
     </style>
 
 </head>
 <body>
     <div class="utils-form-wrapper">
         <form class="utils-form" action="{{ route('calculate') }}" method="POST" onsubmit="if(!validateAndCompute()) return false;">
-                        <div class="tech-stack flex justify-center items-center bg-background-400 w-full p-8 gap-8  rounded-lg ">
-                <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" alt="" style="max-width: 150px; height: auto;">
-                <img src="{{@asset('assets/imgs/JavaScript-logo.png')}}" alt="" style="max-width: 75px; height: auto;">
-                <img src="{{@asset('assets/imgs/PHP-logo.svg.png')}}" alt="" style="max-width: 100px; height: auto;">
-            </div>
+
             @csrf
             <h2 class="utils-title">CPU Scheduling Calculator</h2>
 
@@ -101,8 +213,9 @@
             </div>
 
             <button id="compute-button" type="submit">Compute</button>
+
         </form>
-    </div>
+     </div>
 
 
     <script>

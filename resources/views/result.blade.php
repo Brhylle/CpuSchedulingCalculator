@@ -10,6 +10,7 @@
         :root {        
             --text: #0f0a3b;
             --background: #c999ff;
+            --background-2: #300066;
             --primary: #0d087f;
             --secondary: #dedcff;
             --accent: #c88ee9;
@@ -20,7 +21,7 @@
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            background-color: var(--background-color);
+            background-color: var(--background);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -31,7 +32,7 @@
             width: 90%;
             max-width: 1200px;
             height: 90vh;
-            background-color: var(--background-color-2);
+            background-color: var(--background-2);
             border-radius: 1rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             overflow-y: auto;
@@ -41,14 +42,14 @@
         h1 {
             font-family: Humane Bold;
             font-size: 5rem;
-            color: var(--text-1);
+            color: var(--text);
             text-align: center;
             margin-bottom: 20px;
         }
 
         h2 {
             font-size: 24px;
-            color: rgb(var(--text-1));
+            color: var(--text);
             margin-top: 20px;
             font-weight: bold;
             font-family: PP Neue Montreal Bold;
@@ -56,27 +57,27 @@
         }
 
         th {
-            background-color: var(--text-3);
+            background-color: var(--primary);
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 10px;
-            background-color: var(--);
-            border: 1px solid var(--text-3);
+            background-color: var(--background);
+            border: 1px solid var(--accent);
             font-size: 28px;
         }
 
         th,
         td {
-            border: 1px solid var(--text-3);
+            border: 1px solid var(--accent);
             padding: 6px;
             text-align: left;
         }
 
         tbody tr:nth-child(even) {
-            background-color: var(--background-color);
+            background-color: var(--secondary);
         }
 
         .gantt-container {
@@ -91,19 +92,19 @@
             flex: 0;
             padding: 4px;
             text-align: center;
-            background-color: var(--text-2);
-            border: 1px solid var(--accent-2);
+            background-color: var(--primary);
+            border: 1px solid var(--accent);
             position: relative;
         }
 
         .gantt-container .bar {
-            background-color: var(--background-3);
+            background-color: var(--secondary);
             position: relative;
             padding: 35px;
         }
 
         .gantt-container .bar span {
-            color: var(--text-2);
+            color: var(--accent);
             font-size: 32px;
             font-weight: bold;
             position: absolute;
@@ -131,7 +132,7 @@
             border-radius: 1rem;
             padding: 12px;
             font-size: medium;
-            background: #6D41A1;
+            background: var(--primary);
             color: white;
             text-decoration: none;
         }

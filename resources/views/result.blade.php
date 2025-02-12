@@ -1,7 +1,7 @@
 <!-- resources/views/result.blade.php -->
 
 <!DOCTYPE html>
-<html lang="en" data-theme="cupcake">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

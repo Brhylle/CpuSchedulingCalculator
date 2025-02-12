@@ -17,6 +17,7 @@
             --accent-1: #D480E5;
             --accent-2: #eda8fa;
             --background-3: #d8cee4;
+            --text-3: #7941e2;
         }
         body {
             font-family: PP Neue Montreal Medium;
@@ -46,13 +47,13 @@
             border-collapse: collapse;
             margin-top: 10px;
             background-color: var(--background-color-2);
-            border: 1px solid var(--text-2);
+            border: 1px solid var(--text-3);
             font-size: 28px; /* Decreased font size */
         }
 
         th,
         td {
-            border: 1px solid var(--text-2);
+            border: 1px solid var(--text-3);
             padding: 6px; /* Decreased padding */
             text-align: left;
         }
@@ -106,6 +107,16 @@
             display: flex;
             position: relative;
 
+        }
+
+        .button-wrapper {
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           margin: 2rem; 
+           text-transform: uppercase;
+            font-size: 4rem;
+            border: 12px solid var(--text-2);
         }
     </style>
 </head>

@@ -112,7 +112,10 @@
         .rounded-button {
             border-radius: 1rem;
             padding: 12px;
+            font-size: medium;
+            background: #6D41A1;
         }
+
 
         .button-wrapper {
            display: flex;

@@ -1,5 +1,4 @@
 <!-- resources/views/result.blade.php -->
-
 <!DOCTYPE html>
 <html lang="en" data-theme="cupcake">
 <head>
@@ -7,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CPU Scheduling Calculator</title>
     @vite('resources/css/app.css')
-<style>
+    <style>
         :root {
             --background-color: #C999FF;
             --background-color-2: #24034a;
@@ -19,47 +18,71 @@
             --background-3: #d8cee4;
             --text-3: #7941e2;
         }
+
         body {
             font-family: PP Neue Montreal Medium;
             line-height: 1.6;
-            margin: 20px;
+            margin: 0;
+            padding: 0;
             background-color: var(--background-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
+
+        .wrapper {
+            width: 90%;
+            max-width: 1200px;
+            height: 90vh;
+            background-color: var(--background-color-2);
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            padding: 20px;
+        }
+
         h1 {
             font-family: Humane Bold;
             font-size: 5rem;
             color: var(--text-1);
             text-align: center;
+            margin-bottom: 20px;
         }
+
         h2 {
             font-size: 24px;
             color: rgb(var(--text-1));
             margin-top: 20px;
             font-weight: bold;
             font-family: PP Neue Montreal Bold;
+            text-align: center;
         }
 
         th {
             background-color: var(--theader-color)
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 10px;
             background-color: var(--background-color-2);
             border: 1px solid var(--text-3);
-            font-size: 28px; /* Decreased font size */
+            font-size: 28px;
         }
 
         th,
         td {
             border: 1px solid var(--text-3);
-            padding: 6px; /* Decreased padding */
+            padding: 6px;
             text-align: left;
         }
+
         tbody tr:nth-child(even) {
             background-color: var(--background-color);
         }
+
         .gantt-container {
             display: flex;
             align-items: center;
@@ -67,6 +90,7 @@
             justify-content: center;
             align-items: center;
         }
+
         .gantt-container div {
             flex: 0;
             padding: 4px;
@@ -82,7 +106,6 @@
             padding: 35px;
         }
 
-        /* THIS STYLING TARGETS THE FONT INSIDE THE GANTT CHART */
         .gantt-container .bar span {
             color: var(--text-2);
             font-size: 32px;
@@ -102,11 +125,10 @@
             position: relative;
             font-size: 40px;
         }
-        
+
         div.start-process-el, div.end-process-el {
             display: flex;
             position: relative;
-
         }
 
         .rounded-button {
@@ -114,165 +136,149 @@
             padding: 12px;
             font-size: medium;
             background: #6D41A1;
+            color: white;
+            text-decoration: none;
         }
 
-
         .button-wrapper {
-           display: flex;
-           align-items: center;
-           justify-content: center;
-           margin: 2rem; 
-           text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem;
+            text-transform: uppercase;
             font-size: 4rem;
         }
     </style>
 </head>
 <body>
-    <h1 class="font-bold m-0">CPU Scheduler Results</h1>
+    <div class="wrapper">
+        <h1 class="font-bold m-0">CPU Scheduler Results</h1>
 
-    {{-- DISPLAY THE GANTT CHART ELEMENTS --}}
-    <h2 class="text-center">Gantt Chart</h2>
+        {{-- DISPLAY THE GANTT CHART ELEMENTS --}}
+        <h2>Gantt Chart</h2>
 
-    {{-- GLUES AND HOLDS ALL OF THE ELEMENTS OF THE GANTT TOGETHER --}}
-    {{-- GLUES AND HOLDS ALL OF THE ELEMENTS OF THE GANTT TOGETHER --}}
-
-    <div class="gantt-container">
-    @php
-        $prevEndTime = 0;
-        $totalDuration = 0;
-    @endphp
-
-    {{-- Iterate through each process and handle idle time --}}
-    @foreach ($result['gantt_chart'] as $entry)
-        @php
-            $entryStartTime = $entry['start_time'];
-            $entryEndTime = $entry['end_time'];
-            $processDuration = $entryEndTime - $entryStartTime;
-        @endphp
-
-        {{-- Add idle segment if there's a gap --}}
-        @if ($entryStartTime > $prevEndTime)
+        <div class="gantt-container">
             @php
-                // Calculate idle duration
-                $idleDuration = $entryStartTime - $prevEndTime;
-                $totalDuration += $idleDuration;
-                
-                // Render idle time entry only if the previous end time is not zero
-                if ($prevEndTime != 0) {
+                $prevEndTime = 0;
+                $totalDuration = 0;
             @endphp
-                    {{-- Render idle time entry --}}
-                    <div class="bar idle" style="width: {{ $idleDuration }}%;">
-                        <span>idle</span>
-                    </div>
-            @php
-                }
-            @endphp
-        @endif
 
-        {{-- Render current process --}}
-        <div class="bar" style="width: {{ $processDuration }}%;">
-            <span>{{ $entry['process_name'] }}</span>
+            @foreach ($result['gantt_chart'] as $entry)
+                @php
+                    $entryStartTime = $entry['start_time'];
+                    $entryEndTime = $entry['end_time'];
+                    $processDuration = $entryEndTime - $entryStartTime;
+                @endphp
+
+                @if ($entryStartTime > $prevEndTime)
+                    @php
+                        $idleDuration = $entryStartTime - $prevEndTime;
+                        $totalDuration += $idleDuration;
+                        if ($prevEndTime != 0) {
+                    @endphp
+                            <div class="bar idle" style="width: {{ $idleDuration }}%;">
+                                <span>idle</span>
+                            </div>
+                    @php
+                        }
+                    @endphp
+                @endif
+
+                <div class="bar" style="width: {{ $processDuration }}%;">
+                    <span>{{ $entry['process_name'] }}</span>
+                </div>
+
+                @php
+                    $prevEndTime = $entryEndTime;
+                    $totalDuration += $processDuration;
+                @endphp
+            @endforeach
         </div>
 
-        {{-- Update previous end time --}}
-        @php
-            $prevEndTime = $entryEndTime;
-            $totalDuration += $processDuration;
-        @endphp
-    @endforeach
-</div>
-
-    {{-- DISPLAY THE START AND END TIME OF EACH PROCESSES AT THE START/END OF EACH BOXES--}}
-    <div class="gantt-process-times">
-        @php
-            $index = 1;
-            $shownTimes = [];
-        @endphp
-
-        @foreach ($result['gantt_chart'] as $entry)
+        <div class="gantt-process-times">
             @php
-                // initialization of variables for use later...
+                $index = 1;
+                $shownTimes = [];
+            @endphp
+
+            @foreach ($result['gantt_chart'] as $entry)
+                @php
                     $startTime = $entry['start_time'];
                     $endTime = $entry['end_time'];
                     $startTimeLength = strlen($startTime);  
                     $endTimeLength = strlen($endTime);
-                    $baseMargin = 1.5; // base margin
-                    $gapThreshold = 0.65; // adjustment factor for each digit increase and so the decrease of margin (both left and right)
-                    
+                    $baseMargin = 1.5;
+                    $gapThreshold = 0.65;
                     $startTimeMargin = $baseMargin - (($startTimeLength - 1) * $gapThreshold);
                     $endTimeMargin = $baseMargin - (($endTimeLength - 1) * $gapThreshold);
-            @endphp
+                @endphp
 
-            @if (!in_array($startTime, $shownTimes))
-                <div class="start-process-el" style="margin-left: {{ $startTimeMargin }}rem; margin-right: {{ $startTimeMargin }}rem;">
-                    {{$startTime}}
-                </div>
-                @php $shownTimes[] = $startTime; @endphp
-            @endif
+                @if (!in_array($startTime, $shownTimes))
+                    <div class="start-process-el" style="margin-left: {{ $startTimeMargin }}rem; margin-right: {{ $startTimeMargin }}rem;">
+                        {{$startTime}}
+                    </div>
+                    @php $shownTimes[] = $startTime; @endphp
+                @endif
 
-            @if ($startTime != $endTime && !in_array($endTime, $shownTimes))
-                <div class="end-process-el" style="margin-left: {{ $endTimeMargin }}rem; margin-right: {{ $endTimeMargin }}rem;">
-                    {{$endTime}}
-                </div>
-                @php $shownTimes[] = $endTime; @endphp
-            @endif
+                @if ($startTime != $endTime && !in_array($endTime, $shownTimes))
+                    <div class="end-process-el" style="margin-left: {{ $endTimeMargin }}rem; margin-right: {{ $endTimeMargin }}rem;">
+                        {{$endTime}}
+                    </div>
+                    @php $shownTimes[] = $endTime; @endphp
+                @endif
 
-        @endforeach
-        @php $index++ @endphp
-    </div>
-
-    {{-- PROCESS DETAILS TABLE--}}
-    <h2>Process Details</h2>
-    <table>
-        <thead>
-            <tr>
-                {{-- HEADERS FOR THE TABLE ITSELF --}}
-                <th>Process Name</th>
-                <th>Arrival Time</th>
-                <th>Burst Time</th>
-                <th>Priority</th>
-                <th>Waiting Time</th>
-                <th>Turnaround Time</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{-- ITERATES THROUGHOUT ALL THE FILLED UP PROCESSES THROUGH AN ARRAY --}}
-            @foreach ($result['processes'] as $process)
-                <tr>
-                    <td>{{ $process['name'] }}</td>
-                    <td>{{ $process['arrival_time'] }}</td>
-                    <td>{{ $process['burst_time'] }}</td>
-                    <td>{{ $process['priority'] ?? '-' }}</td>
-                    <td>{{ $process['waiting_time'] }}</td>
-                    <td>{{ $process['turnaround_time'] }}</td>
-                </tr>
             @endforeach
-        </tbody>
-    </table>
+            @php $index++ @endphp
+        </div>
 
-    <h2>Average Times</h2>
+        {{-- PROCESS DETAILS TABLE--}}
+        <h2>Process Details</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Process Name</th>
+                    <th>Arrival Time</th>
+                    <th>Burst Time</th>
+                    <th>Priority</th>
+                    <th>Waiting Time</th>
+                    <th>Turnaround Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($result['processes'] as $process)
+                    <tr>
+                        <td>{{ $process['name'] }}</td>
+                        <td>{{ $process['arrival_time'] }}</td>
+                        <td>{{ $process['burst_time'] }}</td>
+                        <td>{{ $process['priority'] ?? '-' }}</td>
+                        <td>{{ $process['waiting_time'] }}</td>
+                        <td>{{ $process['turnaround_time'] }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
 
-    {{-- TABLE DEFINITION FOR THE AVERAGES --}}
-    <table>
-        <thead>
-            <tr>
-                <th>Average Waiting Time</th>
-                <th>Average Turnaround Time</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{ $result['average_waiting_time'] }}</td>
-                <td>{{ $result['average_turnaround_time'] }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <h2>Average Times</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Average Waiting Time</th>
+                    <th>Average Turnaround Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ $result['average_waiting_time'] }}</td>
+                    <td>{{ $result['average_turnaround_time'] }}</td>
+                </tr>
+            </tbody>
+        </table>
 
-    <div class="button-wrapper padding-12">
-        <button id="calculate-again-btn 
-        " class="rounded-button"><a href="{{ route('welcome') }}" class="padding-12 text-text-100">Calculate Again</a>
-        </button>
+        <div class="button-wrapper padding-12">
+            <button id="calculate-again-btn" class="rounded-button">
+                <a href="{{ route('welcome') }}" class="padding-12 text-text-100">Calculate Again</a>
+            </button>
+        </div>
     </div>
-
 </body>
 </html>

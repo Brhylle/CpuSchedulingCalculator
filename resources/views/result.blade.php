@@ -109,6 +109,11 @@
 
         }
 
+        .rounded-button {
+            border-radius: 1rem;
+            padding: 12px;
+        }
+
         .button-wrapper {
            display: flex;
            align-items: center;
@@ -116,7 +121,6 @@
            margin: 2rem; 
            text-transform: uppercase;
             font-size: 4rem;
-            border: 12px solid var(--text-2);
         }
     </style>
 </head>
@@ -263,7 +267,7 @@
 
     <div class="button-wrapper padding-12">
         <button id="calculate-again-btn 
-        " class="rounded-xl padding-12 bg-accent-700"><a href="{{ route('welcome') }}" class="padding-12 text-text-100">Calculate Again</a>
+        " class="rounded-button"><a href="{{ route('welcome') }}" class="padding-12 text-text-100">Calculate Again</a>
         </button>
     </div>
 

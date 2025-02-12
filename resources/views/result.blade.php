@@ -147,6 +147,11 @@
             font-size: 4rem;
             color: white;
         }
+
+        .intra-button {
+            padding: 12px;
+            color: var(--text);
+        }
     </style>
 </head>
 <body>
@@ -275,7 +280,7 @@
 
         <div class="button-wrapper padding-12">
             <button id="calculate-again-btn" class="rounded-button">
-                <a href="{{ route('welcome') }}" class="padding-12 text-text-100">Calculate Again</a>
+                <a href="{{ route('welcome') }}" class="intra-button">Calculate Again</a>
             </button>
         </div>
     </div>

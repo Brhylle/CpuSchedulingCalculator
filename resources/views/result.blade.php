@@ -14,6 +14,7 @@
             --primary: #0d087f;
             --secondary: #dedcff;
             --accent: #c88ee9;
+            --accent-2: #ead4f7;
         }
 
         body {
@@ -92,19 +93,19 @@
             flex: 0;
             padding: 4px;
             text-align: center;
-            background-color: var(--primary);
+            background-color: var(--secondary);
             border: 1px solid var(--accent);
             position: relative;
         }
 
         .gantt-container .bar {
-            background-color: var(--secondary);
+            background-color: var(--primary);
             position: relative;
             padding: 35px;
         }
 
         .gantt-container .bar span {
-            color: var(--accent);
+            color: var(--accent-2);
             font-size: 32px;
             font-weight: bold;
             position: absolute;

@@ -24,7 +24,7 @@
         }
         h1 {
             font-family: Humane Bold;
-            font-size: 14rem;
+            font-size: 5rem;
             color: var(--text-1);
             text-align: center;
         }

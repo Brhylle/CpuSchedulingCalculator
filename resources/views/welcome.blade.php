@@ -15,6 +15,9 @@
             border: 1px solid #ccc;
             border-radius: 3px;
         }
+        .hidden {
+            display: none;
+        }
         button {
             display: block;
             margin: 5px 0px 5px 0px;
@@ -30,6 +33,7 @@
         button:hover {
             background-color: #290e49;
             text-transform: uppercase;
+            border:#220149;
         }
 
         .buttons-container {
@@ -167,6 +171,12 @@
         box-shadow: 0 0 0.625rem rgba(0,0,0,0.1);
     }
 
+    .utils-form-label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
     
     </style>
 
@@ -199,7 +209,7 @@
                         <input type="number" id="burst_time_1" name="processes[1][burst_time]" required>
                         <div class="priorityField hidden">
                             <div class="util-priority-input">
-                                <label class="utils-form-label" for="priority_1" @required(true)>Priority: </label>
+                                <label class="utils-form-label" for="priority_1" @required(true)>Priority: <br></label>
                                 <input type="number" id="priority_1" name="processes[1][priority]">
                             </div>
                         </div>
@@ -236,7 +246,7 @@
                 <input type="number" id="burst_time_${processCount}" name="processes[${processCount}][burst_time]" required>
                 <div class="priorityField ${selectedAlgorithm === 'priority' ? '' : 'hidden'}">
                     <div class="util-priority-input">
-                        <label class="utils-form-label" for="priority_${processCount}" @required(true)>Priority: </label>
+                        <label class="utils-form-label" for="priority_${processCount}" @required(true)>Priority:</label>
                         <input type="number" id="priority_${processCount}" name="processes[${processCount}][priority]">
                     </div>
                 </div>
@@ -278,28 +288,30 @@
 
     document.addEventListener('DOMContentLoaded', function() {
         resetAlgorithm();
+
+        document.getElementById('algorithm').addEventListener('change', function () {
+            updatePriorityFields();
+        })
     });
 
-    document.getElementById('algorithm').addEventListener('change', function() {
-        const selectedAlgorithm = this.value;
-        const priorityFields = document.querySelectorAll('.priorityField');
+    function updatePriorityFields() {
+    const selectedAlgorithm = document.getElementById('algorithm').value;
+    const priorityFields = document.querySelectorAll('.priorityField');
 
-        priorityFields.forEach(field => {
-            const input = field.querySelector('input');
-            if (selectedAlgorithm === 'priority') {
-                field.classList.remove('hidden');
-                field.classList.add('flex');
-            } else {
-                field.classList.remove('flex');
-                field.classList.add('hidden');
-                input.value = ''; // Reset the value of the priority field
-            }
-        });
-
-        if (selectedAlgorithm !== 'priority') {
-            clearFirstProcessPriority(); // Clear priority field in the first process
+    priorityFields.forEach(field => {
+        const input = field.querySelector('input');
+        if (selectedAlgorithm === 'priority') {
+            field.classList.remove('hidden');
+            field.classList.add('flex');
+        } else {
+            field.classList.remove('flex');
+            field.classList.add('hidden');
+            input.value = ''; // Reset the priority field
         }
     });
+}
+
+
 </script>
 
 </body>

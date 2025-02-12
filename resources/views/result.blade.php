@@ -7,16 +7,12 @@
     <title>CPU Scheduling Calculator</title>
     @vite('resources/css/app.css')
     <style>
-        :root {
-            --background-color: #C999FF;
-            --background-color-2: #24034a;
-            --theader-color: #bf87ff43;
-            --text-1: #463069;
-            --text-2: #0A0415;
-            --accent-1: #D480E5;
-            --accent-2: #eda8fa;
-            --background-3: #d8cee4;
-            --text-3: #7941e2;
+        :root {        
+            --text: #0f0a3b;
+            --background: #c999ff;
+            --primary: #0d087f;
+            --secondary: #dedcff;
+            --accent: #c88ee9;
         }
 
         body {
@@ -60,14 +56,14 @@
         }
 
         th {
-            background-color: var(--theader-color)
+            background-color: var(--text-3);
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 10px;
-            background-color: var(--background-color-2);
+            background-color: var(--);
             border: 1px solid var(--text-3);
             font-size: 28px;
         }

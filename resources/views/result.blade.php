@@ -12,6 +12,7 @@
             --background: #c999ff;
             --background-2: #f1e5ff;
             --background-3: #ad66ff;
+            --background-4: #a49ff9;
             --primary: #0d087f;
             --secondary: #dedcff;
             --accent: #c88ee9;
@@ -138,6 +139,12 @@
             text-decoration: none;
         }
 
+        .rounded-button:hover {
+           background: var(--background-4);
+           font-weight: bolder;
+        }
+
+
         .button-wrapper {
             display: flex;
             align-items: center;
@@ -151,6 +158,10 @@
         .intra-button {
             padding: 12px;
             color: var(--background-2);
+        }
+
+        .intra-button:hover {
+            color: var(--text);
         }
     </style>
 </head>

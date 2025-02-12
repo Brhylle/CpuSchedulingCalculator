@@ -158,10 +158,12 @@
         .intra-button {
             padding: 12px;
             color: var(--background-2);
+            text-decoration: none;
         }
 
         .intra-button:hover {
             color: var(--text);
+            text-decoration: none;
         }
     </style>
 </head>

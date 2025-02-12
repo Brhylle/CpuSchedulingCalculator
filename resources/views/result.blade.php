@@ -8,46 +8,54 @@
     <title>CPU Scheduling Calculator</title>
     @vite('resources/css/app.css')
 <style>
+        :root {
+            --background-color: #C999FF;
+            --background-color-2: #24034a;
+            --theader-color: #bf87ff43;
+            --text-1: #463069;
+            --text-2: #0A0415;
+            --accent-1: #D480E5;
+        }
         body {
             font-family: PP Neue Montreal Medium;
             line-height: 1.6;
             margin: 20px;
-            background-color: #C0BADE;
+            background-color: var(--background-color);
         }
         h1 {
             font-family: Humane Bold;
             font-size: 14rem;
-            color: rgb(var(--text-600));
+            color: var(--text-1);
             text-align: center;
         }
         h2 {
             font-size: 64px;
-            color: rgb(var(--text-800));
+            color: rgb(var(--text-2));
             margin-top: 20px;
             font-weight: bold;
             font-family: PP Neue Montreal Bold;
         }
 
         th {
-            background-color: rgb(var(--background-300))
+            background-color: var(--theader-color)
         }
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 10px;
-            background-color: rgb(var(--background-100));
-            border: 1px solid rgb(var(--accent-300));
+            background-color: var(--background-color-2);
+            border: 1px solid var(--text-2);
             font-size: 28px; /* Decreased font size */
         }
 
         th,
         td {
-            border: 1px solid rgb(var(--accent-800));
+            border: 1px solid var(--accent-800);
             padding: 6px; /* Decreased padding */
             text-align: left;
         }
         tbody tr:nth-child(even) {
-            background-color: rgb(var(--background-50));
+            background-color: var(--background-50);
         }
         .gantt-container {
             display: flex;
@@ -60,20 +68,20 @@
             flex: 0;
             padding: 4px;
             text-align: center;
-            background-color: rgb(var(--secondary-950));
-            border: 1px solid rgb(var(--accent-50));
+            background-color: var(--secondary-950);
+            border: 1px solid var(--accent-50);
             position: relative;
         }
 
         .gantt-container .bar {
-            background-color: rgb(var(--primary-500));
+            background-color: var(--primary-500);
             position: relative;
             padding: 35px;
         }
 
         /* THIS STYLING TARGETS THE FONT INSIDE THE GANTT CHART */
         .gantt-container .bar span {
-            color: rgb(var(--text-100));
+            color: var(--text-100);
             font-size: 32px;
             font-weight: bold;
             position: absolute;

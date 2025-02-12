@@ -150,7 +150,7 @@
 
         .intra-button {
             padding: 12px;
-            color: var(--text);
+            color: var(--background-2);
         }
     </style>
 </head>

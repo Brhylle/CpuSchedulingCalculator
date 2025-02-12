@@ -15,6 +15,8 @@
             --text-1: #463069;
             --text-2: #0A0415;
             --accent-1: #D480E5;
+            --accent-2: #eda8fa;
+            --background-3: #d8cee4;
         }
         body {
             font-family: PP Neue Montreal Medium;
@@ -29,8 +31,8 @@
             text-align: center;
         }
         h2 {
-            font-size: 64px;
-            color: rgb(var(--text-2));
+            font-size: 24px;
+            color: rgb(var(--text-1));
             margin-top: 20px;
             font-weight: bold;
             font-family: PP Neue Montreal Bold;
@@ -50,12 +52,12 @@
 
         th,
         td {
-            border: 1px solid var(--accent-800);
+            border: 1px solid var(--text-2);
             padding: 6px; /* Decreased padding */
             text-align: left;
         }
         tbody tr:nth-child(even) {
-            background-color: var(--background-50);
+            background-color: var(--background-color);
         }
         .gantt-container {
             display: flex;
@@ -68,20 +70,20 @@
             flex: 0;
             padding: 4px;
             text-align: center;
-            background-color: var(--secondary-950);
-            border: 1px solid var(--accent-50);
+            background-color: var(--text-2);
+            border: 1px solid var(--accent-2);
             position: relative;
         }
 
         .gantt-container .bar {
-            background-color: var(--primary-500);
+            background-color: var(--background-3);
             position: relative;
             padding: 35px;
         }
 
         /* THIS STYLING TARGETS THE FONT INSIDE THE GANTT CHART */
         .gantt-container .bar span {
-            color: var(--text-100);
+            color: var(--text-2);
             font-size: 32px;
             font-weight: bold;
             position: absolute;

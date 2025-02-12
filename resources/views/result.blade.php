@@ -9,7 +9,7 @@
     <style>
         :root {        
             --text: #0f0a3b;
-            --background: #c999ff;
+            --background: #f1e5ff;
             --background-2: #300066;
             --primary: #0d087f;
             --secondary: #dedcff;
@@ -133,7 +133,6 @@
             padding: 12px;
             font-size: medium;
             background: var(--primary);
-            color: white;
             text-decoration: none;
         }
 
@@ -144,6 +143,7 @@
             margin: 2rem;
             text-transform: uppercase;
             font-size: 4rem;
+            color: white;
         }
     </style>
 </head>

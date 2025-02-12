@@ -11,6 +11,7 @@
             --text: #0f0a3b;
             --background: #c999ff;
             --background-2: #f1e5ff;
+            --background-3: #ad66ff;
             --primary: #0d087f;
             --secondary: #dedcff;
             --accent: #c88ee9;
@@ -58,7 +59,7 @@
         }
 
         th {
-            background-color: var(--primary);
+            background-color: var(--background-3);
         }
 
         table {

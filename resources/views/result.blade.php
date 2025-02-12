@@ -5,24 +5,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CPU Scheduling Calculator</title>
+    <title>CPU SCHEDULING CALCULATOR</title>
     @vite('resources/css/app.css')
 <style>
+    :root {
+        --background-color: #C999FF;
+        --text-1: #463069;
+        --text-2: #0A0415;
+        --accent: #D480E5;
+    }
         body {
             font-family: PP Neue Montreal Medium;
             line-height: 1.6;
             margin: 20px;
-            background-color: #C0BADE;
+            background-color: var(--background-color);
         }
         h1 {
             font-family: Humane Bold;
             font-size: 14rem;
-            color: rgb(var(--text-600));
+            color: rgb(var(--text-1));
             text-align: center;
         }
         h2 {
             font-size: 64px;
-            color: rgb(var(--text-800));
+            color: rgb(var(--text-2));
             margin-top: 20px;
             font-weight: bold;
             font-family: PP Neue Montreal Bold;

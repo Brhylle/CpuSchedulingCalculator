@@ -27,3 +27,23 @@ A simple, interactive web-based tool to simulate and visualize CPU scheduling al
    ```bash
    git clone https://github.com/your-username/cpu-scheduling-calculator.git
    cd cpu-scheduling-calculator
+
+2. Install dependencies:
+   ```bash
+   npm install
+   
+3. Run the app locally:
+   ```bash
+   npm run dev
+
+4. Open your browser and go to `http://localhost:3000`.
+
+## Screenshots
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+## License 
+This project is licensed under the MIT License.
+
+Let me know if you want me to generate placeholder screenshots or fill in your actual GitHub repo link.
